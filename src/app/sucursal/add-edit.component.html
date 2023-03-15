@@ -26,7 +26,7 @@
             <label class="form-label">Moneda</label>
             <select formControlName="codigo_Moneda" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.codigo_Moneda.errors }">
                 <option *ngFor="let moneda of monedaList" [value]="moneda.descripcion">
-                    {{ moneda.descripcion }}
+                    {{ moneda.descripcion }} 
                   </option>
             </select>
         </div>
