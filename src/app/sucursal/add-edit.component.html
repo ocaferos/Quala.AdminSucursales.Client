@@ -1,0 +1,47 @@
+﻿<h1>{{title}}</h1>
+<form *ngIf="!loading" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="row">
+        <div class="col-5 mb-3">
+            <label class="form-label">Descripcion</label>
+            <input type="text" formControlName="descripcion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.descripcion.errors }" />
+            <div *ngIf="submitted && f.descripcion.errors" class="invalid-feedback">
+                <div *ngIf="f.descripcion.errors.required">La descripcion es requerida</div>
+            </div>
+        </div>
+        <div class="col-5 mb-3">
+            <label class="form-label">Direccion</label>
+            <input type="text" formControlName="direccion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.direccion.errors }" />
+            <div *ngIf="submitted && f.direccion.errors" class="invalid-feedback">
+                <div *ngIf="f.direccion.errors.required">La direccion es requerida</div>
+            </div>
+        </div>
+        <div class="col-3 mb-3">
+            <label class="form-label">Identificacion</label>
+            <input type="text" formControlName="identificacion" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.identificacion.errors }" />
+            <div *ngIf="submitted && f.identificacion.errors" class="invalid-feedback">
+                <div *ngIf="f.identificacion.errors.required">La identificacion es requerida</div>
+            </div>
+        </div>
+        <div class="col-3 mb-3">
+            <label class="form-label">Moneda</label>
+            <select formControlName="codigo_Moneda" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.codigo_Moneda.errors }">
+                <option *ngFor="let moneda of monedaList" [value]="moneda.descripcion">
+                    {{ moneda.descripcion }}
+                  </option>
+            </select>
+        </div>
+    </div>
+    <div class="row">
+        
+    </div>
+    <div class="form-group">
+        <button [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="submitting" class="spinner-border spinner-border-sm me-1"></span>
+            Save
+        </button>
+        <a routerLink="/sucursal" class="btn btn-link">Cancel</a>
+    </div>
+</form>
+<div *ngIf="loading" class="text-center m-5">
+    <span class="spinner-border spinner-border-lg align-center"></span>
+</div>

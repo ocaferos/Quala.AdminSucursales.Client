@@ -1,0 +1,37 @@
+﻿<h1>Sucursales</h1>
+<a routerLink="add" class="btn btn-sm btn-success mb-2">Add Sucursal</a>
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th style="width: 10%">Codigo</th>
+            <th style="width: 20%">Descripcion</th>
+            <th style="width: 15%">Direccion</th>
+            <th style="width: 15%">Identificacion</th>
+            <th style="width: 15%">Fecha Creacion</th>
+            <th style="width: 15%">Codigo Moneda</th>
+            <th style="width: 10%"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let sucursal of sucursales">
+            <td>{{sucursal.codigo}}</td>
+            <td> {{sucursal.descripcion}}</td> 
+            <td>{{sucursal.direccion}}</td>
+            <td>{{sucursal.identificacion}}</td>
+            <td>{{sucursal.fecha_Creacion}}</td>
+            <td>{{sucursal.codigo_Moneda}}</td>
+            <td style="white-space: nowrap">
+                <a routerLink="edit/{{sucursal.codigo}}" class="btn btn-sm btn-primary me-1">Edit</a>
+                <button (click)="deleteSucursal(sucursal.codigo)" class="btn btn-sm btn-danger btn-delete-sucursal" [disabled]="sucursal.isDeleting">
+                    <span *ngIf="sucursal.isDeleting" class="spinner-border spinner-border-sm"></span>
+                    <span *ngIf="!sucursal.isDeleting">Delete</span>
+                </button>
+            </td>
+        </tr>
+        <tr *ngIf="!sucursales">
+            <td colspan="4" class="text-center">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
